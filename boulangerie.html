@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Best Boulangerie — Artisanat & Passion · Yaoundé</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brun:    #3E1F00;
+  --brun-m:  #7A4A1E;
+  --brun-c:  #B07842;
+  --or:      #D4A847;
+  --or-c:    #F0CC7A;
+  --creme:   #FAF5EC;
+  --creme-d: #F0E8D4;
+  --blanc:   #FDFAF5;
+  --texte:   #2A1800;
+  --gris:    #8A7A6A;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--blanc);
+  color: var(--texte);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ─── CUSTOM CURSOR ─── */
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: var(--or);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(212,168,71,0.4);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, width 0.3s, height 0.3s, border-color 0.3s;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(250,245,236,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(62,31,0,0.08);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 30px rgba(62,31,0,0.1); }
+.nav-back {
+  display: flex; align-items: center; gap: 0.6rem;
+  color: var(--brun-m); text-decoration: none;
+  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: gap 0.3s, color 0.3s;
+}
+.nav-back:hover { gap: 1rem; color: var(--or); }
+.nav-back::before { content: '←'; font-size: 1rem; }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; color: var(--brun);
+  letter-spacing: 0.03em;
+}
+.nav-logo span { color: var(--or); font-style: italic; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--brun-m); text-decoration: none;
+  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: color 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; bottom: -4px;
+  width: 0; height: 1px; background: var(--or); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--brun); }
+.nav-links a:hover::after { width: 100%; }
+.nav-wa {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: var(--brun); color: #fff;
+  padding: 0.55rem 1.4rem; border-radius: 1px;
+  text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em;
+  text-transform: uppercase; transition: background 0.3s;
+}
+.nav-wa:hover { background: var(--brun-m); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--brun);
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden; position: relative;
+}
+
+/* LEFT SIDE */
+.hero-left {
+  display: flex; flex-direction: column;
+  justify-content: center; padding: 8rem 4rem 4rem;
+  position: relative; z-index: 2;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 2.5rem;
+}
+.hero-tag::before, .hero-tag::after {
+  content: ''; width: 30px; height: 1px; background: var(--or);
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  color: var(--creme); font-weight: 400;
+  line-height: 1.05; letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+}
+.hero-title em {
+  display: block; font-style: italic;
+  color: var(--or); font-size: 0.85em;
+}
+.hero-desc {
+  font-size: 1rem; color: rgba(250,245,236,0.5);
+  line-height: 1.8; max-width: 380px; margin-bottom: 3rem;
+  font-weight: 300;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-or {
+  background: var(--or); color: var(--brun);
+  padding: 1rem 2.2rem; font-size: 0.8rem;
+  letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+  border: none; cursor: pointer; text-decoration: none;
+  display: inline-block; transition: all 0.3s; border-radius: 1px;
+}
+.btn-or:hover { background: var(--or-c); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent; color: var(--creme);
+  padding: 1rem 2.2rem; font-size: 0.8rem;
+  letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400;
+  border: 1px solid rgba(250,245,236,0.2); cursor: pointer; text-decoration: none;
+  display: inline-block; transition: all 0.3s; border-radius: 1px;
+}
+.btn-ghost:hover { border-color: var(--or); color: var(--or); transform: translateY(-2px); }
+
+/* Vertical text decoration */
+.hero-vertical {
+  position: absolute; right: -2px; top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-size: 0.65rem; letter-spacing: 0.5em; text-transform: uppercase;
+  color: rgba(212,168,71,0.25); white-space: nowrap;
+}
+
+/* RIGHT SIDE - Mosaic */
+.hero-right {
+  position: relative; overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+.hero-photo {
+  overflow: hidden; position: relative;
+}
+.hero-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s ease;
+  filter: brightness(0.85) saturate(1.1);
+}
+.hero-photo:hover img { transform: scale(1.05); }
+.hero-photo.large {
+  grid-row: 1 / 3; grid-column: 1 / 2;
+}
+.hero-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(62,31,0,0.3) 0%, transparent 60%);
+}
+
+/* Stats strip */
+.stats-strip {
+  background: var(--or);
+  display: flex; justify-content: center; gap: 0;
+}
+.stat {
+  flex: 1; text-align: center; padding: 2.5rem 1rem;
+  border-right: 1px solid rgba(62,31,0,0.15);
+  transition: background 0.3s;
+}
+.stat:last-child { border-right: none; }
+.stat:hover { background: var(--or-c); }
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem; font-weight: 400; color: var(--brun);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(62,31,0,0.6); margin-top: 0.5rem;
+}
+
+/* ─── SECTION BASE ─── */
+.section { padding: 8rem 3rem; }
+.eyebrow {
+  font-size: 0.68rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 1.2rem; display: block;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 400; line-height: 1.15;
+}
+.section-subtitle {
+  margin-top: 1rem; font-size: 0.95rem; color: var(--gris);
+  line-height: 1.7; max-width: 520px; font-weight: 300;
+}
+
+/* ─── AGENCES / POINTS DE VENTE ─── */
+.agences { background: var(--creme); }
+.agences-header { text-align: center; margin-bottom: 5rem; }
+.agences-header .section-subtitle { margin-left: auto; margin-right: auto; }
+
+.agences-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; background: rgba(62,31,0,0.06);
+  max-width: 1200px; margin: 0 auto;
+}
+.agence-card {
+  background: var(--blanc); padding: 3rem 2.5rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.4s;
+}
+.agence-card:hover { transform: translateY(-4px); }
+.agence-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--or), var(--brun-c));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s;
+}
+.agence-card:hover::before { transform: scaleX(1); }
+.agence-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem; font-weight: 700; color: rgba(212,168,71,0.12);
+  position: absolute; top: 1rem; right: 1.5rem; line-height: 1;
+}
+.agence-badge {
+  display: inline-block; padding: 0.25rem 0.8rem;
+  background: var(--creme-d); color: var(--brun-m);
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 1.5rem; border-radius: 20px;
+}
+.agence-badge.principale { background: var(--or); color: var(--brun); }
+.agence-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; color: var(--brun); margin-bottom: 0.8rem;
+}
+.agence-address {
+  font-size: 0.88rem; color: var(--gris); line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.agence-info {
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.agence-info-row {
+  display: flex; align-items: center; gap: 0.7rem;
+  font-size: 0.82rem; color: var(--brun-m);
+}
+.agence-info-row span:first-child { font-size: 0.9rem; }
+.agence-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--or); text-decoration: none;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  margin-top: 1.5rem; transition: gap 0.3s;
+}
+.agence-link:hover { gap: 1rem; }
+.agence-link::after { content: '→'; }
+
+/* ─── PÂTISSERIES PHARES ─── */
+.patisseries { background: var(--blanc); }
+.patisseries-inner { max-width: 1300px; margin: 0 auto; }
+.patisseries-header { margin-bottom: 4rem; }
+
+.patisseries-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 1.5rem;
+}
+
+/* Featured large card */
+.patis-card {
+  border-radius: 2px; overflow: hidden;
+  position: relative; cursor: pointer;
+  transition: transform 0.4s;
+}
+.patis-card:hover { transform: translateY(-6px); }
+.patis-card.featured { grid-column: span 5; grid-row: span 2; }
+.patis-card.medium { grid-column: span 4; }
+.patis-card.small { grid-column: span 3; }
+.patis-card.wide { grid-column: span 7; }
+
+.patis-img {
+  width: 100%; height: 100%; min-height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.patis-card.featured .patis-img { min-height: 440px; }
+
+/* Gradient backgrounds simulating food photos */
+.bg-croissant { background: linear-gradient(135deg, #8B5E2A 0%, #C4923A 40%, #E8B86D 100%); }
+.bg-eclair    { background: linear-gradient(135deg, #3D1C0A 0%, #7A3D15 50%, #B06020 100%); }
+.bg-tarte     { background: linear-gradient(135deg, #6B2D0A 0%, #C45A1A 50%, #E8A070 100%); }
+.bg-pain1     { background: linear-gradient(135deg, #5C3A1E 0%, #9A6535 50%, #C4924A 100%); }
+.bg-mille     { background: linear-gradient(135deg, #7A5020 0%, #B08030 50%, #D4AE60 100%); }
+.bg-brioche   { background: linear-gradient(135deg, #8B6525 0%, #C49840 50%, #E8C870 100%); }
+.bg-fondant   { background: linear-gradient(135deg, #2A0A00 0%, #5A1A05 50%, #8A3A15 100%); }
+
+.patis-emoji-bg {
+  font-size: 5rem; opacity: 0.2; position: absolute;
+  right: 1rem; bottom: 0.5rem;
+  transition: transform 0.4s, opacity 0.4s;
+}
+.patis-card:hover .patis-emoji-bg { transform: scale(1.2) rotate(5deg); opacity: 0.35; }
+
+.patis-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 2rem;
+}
+.patis-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; color: #fff; margin-bottom: 0.4rem;
+}
+.patis-card.featured .patis-name { font-size: 2.2rem; }
+.patis-desc { font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+.patis-price {
+  display: inline-block; margin-top: 0.8rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; color: var(--or); font-style: italic;
+}
+.patis-tag {
+  position: absolute; top: 1rem; left: 1rem;
+  background: var(--or); color: var(--brun);
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.25rem 0.7rem; border-radius: 20px; font-weight: 600;
+}
+
+/* ─── TYPES DE PAIN ─── */
+.pains { background: var(--brun); color: var(--creme); padding: 8rem 3rem; }
+.pains-inner { max-width: 1200px; margin: 0 auto; }
+.pains-header { margin-bottom: 5rem; }
+.pains-header .section-title { color: var(--creme); }
+.pains-header .section-subtitle { color: rgba(250,245,236,0.5); }
+
+.pains-list {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: rgba(250,245,236,0.06);
+}
+.pain-item {
+  display: flex; gap: 2.5rem; align-items: center;
+  padding: 3rem; background: var(--brun);
+  transition: background 0.3s;
+  cursor: default;
+}
+.pain-item:hover { background: rgba(250,245,236,0.04); }
+
+.pain-visual {
+  flex-shrink: 0; width: 100px; height: 100px;
+  border-radius: 50%; overflow: hidden;
+  border: 2px solid rgba(212,168,71,0.2);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s;
+  position: relative;
+}
+.pain-item:hover .pain-visual { border-color: var(--or); }
+.pain-v-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.pain-emoji { font-size: 2.8rem; }
+
+.pain-content { flex: 1; }
+.pain-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; color: var(--creme); margin-bottom: 0.5rem;
+}
+.pain-info {
+  font-size: 0.82rem; color: rgba(250,245,236,0.45);
+  line-height: 1.6; margin-bottom: 0.8rem;
+}
+.pain-meta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+.pain-chip {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--or); border: 1px solid rgba(212,168,71,0.25);
+  padding: 0.2rem 0.7rem; border-radius: 1px;
+}
+.pain-price-tag {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; color: rgba(212,168,71,0.7);
+  font-style: italic; white-space: nowrap;
+}
+
+/* ─── GALERIE PRÉPARATION ─── */
+.galerie { background: var(--creme-d); padding: 8rem 3rem; }
+.galerie-inner { max-width: 1300px; margin: 0 auto; }
+.galerie-header { text-align: center; margin-bottom: 5rem; }
+
+.galerie-masonry {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 80px;
+  gap: 1rem;
+}
+.photo-card {
+  position: relative; overflow: hidden; border-radius: 2px;
+  cursor: pointer;
+}
+.photo-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease, filter 0.3s;
+  filter: brightness(0.9);
+}
+.photo-card:hover img { transform: scale(1.08); filter: brightness(1); }
+.photo-card .photo-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.5rem 1.2rem 1rem;
+  background: linear-gradient(to top, rgba(62,31,0,0.7) 0%, transparent 100%);
+  color: rgba(250,245,236,0.9); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  transform: translateY(100%); transition: transform 0.3s;
+}
+.photo-card:hover .photo-caption { transform: translateY(0); }
+
+/* Grid placements - mosaic layout */
+.photo-card.p1  { grid-column: span 5; grid-row: span 4; }
+.photo-card.p2  { grid-column: span 4; grid-row: span 2; }
+.photo-card.p3  { grid-column: span 3; grid-row: span 2; }
+.photo-card.p4  { grid-column: span 4; grid-row: span 2; }
+.photo-card.p5  { grid-column: span 3; grid-row: span 2; }
+.photo-card.p6  { grid-column: span 4; grid-row: span 4; }
+.photo-card.p7  { grid-column: span 3; grid-row: span 2; }
+.photo-card.p8  { grid-column: span 5; grid-row: span 2; }
+.photo-card.p9  { grid-column: span 3; grid-row: span 2; }
+
+/* Photo placeholders with beautiful gradients + emoji */
+.photo-placeholder {
+  width: 100%; height: 100%; min-height: 200px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.8rem; position: relative; overflow: hidden;
+}
+.photo-placeholder .ph-emoji { font-size: 3.5rem; }
+.photo-card.p1 .photo-placeholder { min-height: 340px; }
+.photo-card.p1 .ph-emoji { font-size: 5rem; }
+.photo-card.p6 .photo-placeholder { min-height: 340px; }
+.photo-card.p6 .ph-emoji { font-size: 5rem; }
+.ph-label {
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); text-align: center; padding: 0 1rem;
+}
+.add-photo-hint {
+  font-size: 0.65rem; color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border: 1px dashed rgba(255,255,255,0.2); padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+/* Gradient backgrounds for photo placeholders */
+.g1  { background: linear-gradient(135deg, #5C2800, #9E5A20, #C49040); }
+.g2  { background: linear-gradient(135deg, #2A1000, #5A2A10, #8A5030); }
+.g3  { background: linear-gradient(135deg, #7A4A00, #B08020, #D4B050); }
+.g4  { background: linear-gradient(135deg, #3E1A00, #7A3A10, #A06030); }
+.g5  { background: linear-gradient(135deg, #4A2800, #8A5820, #B08840); }
+.g6  { background: linear-gradient(135deg, #1A0800, #3E1A08, #6A3015); }
+.g7  { background: linear-gradient(135deg, #6A3810, #A06828, #C09048); }
+.g8  { background: linear-gradient(135deg, #3A1800, #6A3810, #9A6030); }
+.g9  { background: linear-gradient(135deg, #5A3010, #8A5828, #B08050); }
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.95);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.lightbox.open { opacity: 1; pointer-events: all; }
+.lightbox-content {
+  max-width: 90vw; max-height: 90vh;
+  font-size: 6rem; text-align: center;
+}
+.lightbox-close {
+  position: absolute; top: 2rem; right: 2rem;
+  color: #fff; font-size: 1.5rem; cursor: pointer;
+  width: 44px; height: 44px; display: flex;
+  align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
+  transition: background 0.3s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.1); }
+
+/* ─── TÉMOIGNAGES ─── */
+.temoignages {
+  background: var(--blanc);
+  padding: 8rem 3rem;
+}
+.temoignages-inner { max-width: 1100px; margin: 0 auto; }
+.temoignages-header { text-align: center; margin-bottom: 5rem; }
+.temoignages-track {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+}
+.temo-card {
+  padding: 2.5rem; background: var(--creme);
+  border-bottom: 3px solid var(--or); border-radius: 1px;
+  transition: transform 0.3s;
+}
+.temo-card:hover { transform: translateY(-4px); }
+.temo-stars { color: var(--or); font-size: 1rem; letter-spacing: 0.05em; margin-bottom: 1.2rem; }
+.temo-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 1.05rem; color: var(--brun);
+  line-height: 1.7; margin-bottom: 1.5rem;
+}
+.temo-author { font-size: 0.78rem; color: var(--gris); }
+.temo-author strong { display: block; color: var(--brun-m); font-family: 'Jost'; margin-bottom: 0.2rem; }
+
+/* ─── COMMANDE / CTA ─── */
+.cta-section {
+  background: linear-gradient(135deg, var(--brun) 0%, #6B3010 100%);
+  padding: 8rem 3rem; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: 'BOULANGERIE';
+  position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%);
+  font-family: 'Playfair Display', serif; font-size: 8rem; font-weight: 700;
+  color: rgba(255,255,255,0.03); white-space: nowrap; letter-spacing: 0.1em;
+}
+.cta-eyebrow { color: var(--or); margin-bottom: 1.5rem; }
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: #fff; margin-bottom: 1.5rem; font-weight: 400;
+}
+.cta-title em { color: var(--or); font-style: italic; }
+.cta-text {
+  font-size: 1rem; color: rgba(255,255,255,0.5);
+  max-width: 500px; margin: 0 auto 3rem; line-height: 1.7;
+}
+.cta-btns { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+/* WhatsApp floating */
+.wa-float {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+  background: #25D366; width: 58px; height: 58px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 25px rgba(37,211,102,0.4);
+  text-decoration: none; transition: transform 0.3s;
+  animation: waPulse 3s infinite;
+}
+.wa-float:hover { transform: scale(1.12); }
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #1A0800; padding: 4rem 3rem 2rem;
+  border-top: 1px solid rgba(212,168,71,0.1);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem; max-width: 1100px; margin: 0 auto 3rem;
+}
+.footer-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--or); margin-bottom: 0.5rem;
+}
+.footer-brand-tag {
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(250,245,236,0.2); margin-bottom: 1.5rem;
+}
+.footer-brand-desc { font-size: 0.85rem; color: rgba(250,245,236,0.3); line-height: 1.7; max-width: 300px; }
+.footer-col-title {
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 1.5rem;
+}
+.footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.footer-links-list a { color: rgba(250,245,236,0.3); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+.footer-links-list a:hover { color: var(--or); }
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto;
+  padding-top: 2rem; border-top: 1px solid rgba(250,245,236,0.05);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.75rem; color: rgba(250,245,236,0.15); }
+.footer-back {
+  font-size: 0.75rem; color: rgba(212,168,71,0.4);
+  text-decoration: none; letter-spacing: 0.1em;
+  text-transform: uppercase; transition: color 0.3s;
+}
+.footer-back:hover { color: var(--or); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 6px 25px rgba(37,211,102,0.4); }
+  50%       { box-shadow: 0 6px 45px rgba(37,211,102,0.7); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 7rem 2rem 4rem; }
+  .agences-grid { grid-template-columns: 1fr; }
+  .pains-list { grid-template-columns: 1fr; }
+  .patisseries-grid { grid-template-columns: 1fr 1fr; }
+  .patis-card.featured, .patis-card.wide, .patis-card.medium, .patis-card.small { grid-column: span 1; }
+  .galerie-masonry { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+  .photo-card.p1, .photo-card.p2, .photo-card.p3, .photo-card.p4,
+  .photo-card.p5, .photo-card.p6, .photo-card.p7, .photo-card.p8, .photo-card.p9
+  { grid-column: span 1; grid-row: span 1; }
+  .temoignages-track { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .stats-strip { flex-wrap: wrap; }
+  .stat { min-width: 50%; }
+  .section { padding: 5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="lebesthotel.html" class="nav-back">Retour à l'hôtel</a>
+  <div class="nav-logo">Le Best <span>Boulangerie</span></div>
+  <ul class="nav-links">
+    <li><a href="#agences">Nos agences</a></li>
+    <li><a href="#patisseries">Pâtisseries</a></li>
+    <li><a href="#pains">Nos pains</a></li>
+    <li><a href="#galerie">L'atelier</a></li>
+  </ul>
+  <a href="https://wa.me/237673395493" class="nav-wa" target="_blank">
+    Commander
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Artisanat · Passion · Tradition</p>
+    <h1 class="hero-title">
+      L'art du pain<br>
+      <em>fait à la main</em>
+    </h1>
+    <p class="hero-desc">Depuis nos fours à Yaoundé, chaque matin nous façonnons avec amour croissants, pains artisanaux et pâtisseries qui éveillent les sens.</p>
+    <div class="hero-btns">
+      <a href="#patisseries" class="btn-or">Découvrir nos créations</a>
+      <a href="#agences" class="btn-ghost">Trouver une agence</a>
+    </div>
+    <span class="hero-vertical">Le Best Boulangerie — Yaoundé 2024</span>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo large">
+      <div class="photo-placeholder g1" style="min-height:100%">
+        <span class="ph-emoji">🥖</span>
+        <span class="ph-label">Pain artisanal chaud</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-placeholder g3" style="min-height:100%">
+        <span class="ph-emoji">🥐</span>
+        <span class="ph-label">Croissants dorés</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-placeholder g6" style="min-height:100%">
+        <span class="ph-emoji">🎂</span>
+        <span class="ph-label">Pâtisseries fines</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat">
+    <div class="stat-number">3</div>
+    <div class="stat-label">Agences à Yaoundé</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">24+</div>
+    <div class="stat-label">Variétés de pain</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">6h</div>
+    <div class="stat-label">Ouverture chaque matin</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">100%</div>
+    <div class="stat-label">Fait maison</div>
+  </div>
+</div>
+
+<!-- AGENCES -->
+<section class="section agences" id="agences">
+  <div class="agences-header reveal">
+    <span class="eyebrow">✦ Nos Points de Vente</span>
+    <h2 class="section-title">Nos agences<br>à Yaoundé</h2>
+    <p class="section-subtitle">Retrouvez nos produits frais chaque matin dans nos trois boutiques réparties dans la ville.</p>
+  </div>
+  <div class="agences-grid">
+
+    <div class="agence-card reveal">
+      <div class="agence-num">01</div>
+      <span class="agence-badge principale">Siège principal</span>
+      <div class="agence-name">Le Best — Mvog Ada</div>
+      <p class="agence-address">
+        Quartier Mvog Ada, en face du carrefour central<br>
+        Yaoundé, Cameroun
+      </p>
+      <div class="agence-info">
+        <div class="agence-info-row"><span>🕐</span><span>Lun–Ven : 6h00–20h00 · Sam : 6h–21h · Dim : 7h–14h</span></div>
+        <div class="agence-info-row"><span>📞</span><span>+237 673 395 493</span></div>
+        <div class="agence-info-row"><span>🚗</span><span>Parking disponible sur place</span></div>
+        <div class="agence-info-row"><span>☕</span><span>Espace dégustation sur place</span></div>
+      </div>
+      <a href="https://wa.me/237673395493" class="agence-link" target="_blank">Commander ici</a>
+    </div>
+
+    <div class="agence-card reveal">
+      <div class="agence-num">02</div>
+      <span class="agence-badge">Agence Centre</span>
+      <div class="agence-name">Le Best — Bastos</div>
+      <p class="agence-address">
+        Avenue Charles de Gaulle, Quartier Bastos<br>
+        Yaoundé, Cameroun
+      </p>
+      <div class="agence-info">
+        <div class="agence-info-row"><span>🕐</span><span>Lun–Sam : 6h30–20h00 · Dim : 7h–13h</span></div>
+        <div class="agence-info-row"><span>📞</span><span>+237 6XX XXX XXX</span></div>
+        <div class="agence-info-row"><span>🏢</span><span>À proximité des ambassades</span></div>
+        <div class="agence-info-row"><span>📦</span><span>Livraison disponible dans le quartier</span></div>
+      </div>
+      <a href="https://wa.me/237673395493" class="agence-link" target="_blank">Commander ici</a>
+    </div>
+
+    <div class="agence-card reveal">
+      <div class="agence-num">03</div>
+      <span class="agence-badge">Agence Sud</span>
+      <div class="agence-name">Le Best — Biyem-Assi</div>
+      <p class="agence-address">
+        Carrefour Biyem-Assi, près du marché<br>
+        Yaoundé, Cameroun
+      </p>
+      <div class="agence-info">
+        <div class="agence-info-row"><span>🕐</span><span>Lun–Sam : 6h00–19h30 · Dim : 7h–12h</span></div>
+        <div class="agence-info-row"><span>📞</span><span>+237 6XX XXX XXX</span></div>
+        <div class="agence-info-row"><span>🎓</span><span>Centre de formation culinaire</span></div>
+        <div class="agence-info-row"><span>🎂</span><span>Commandes spéciales acceptées</span></div>
+      </div>
+      <a href="https://wa.me/237673395493" class="agence-link" target="_blank">Commander ici</a>
+    </div>
+  </div>
+</section>
+
+<!-- PÂTISSERIES PHARES -->
+<section class="section patisseries" id="patisseries">
+  <div class="patisseries-inner">
+    <div class="patisseries-header reveal">
+      <span class="eyebrow">✦ Nos Créations</span>
+      <h2 class="section-title">Pâtisseries phares</h2>
+      <p class="section-subtitle">Nos chefs créent chaque jour des pièces d'exception, alliant technique française et saveurs locales.</p>
+    </div>
+    <div class="patisseries-grid reveal">
+
+      <!-- Featured -->
+      <div class="patis-card featured">
+        <div class="patis-img bg-croissant">
+          <span class="patis-emoji-bg">🥐</span>
+        </div>
+        <div class="patis-overlay">
+          <span class="patis-tag">⭐ Signature</span>
+          <div class="patis-name">Croissant Beurre Feuilleté</div>
+          <div class="patis-desc">Notre fierté : 27 couches de feuilletage au beurre pur, doré à la perfection chaque matin à 5h.</div>
+          <span class="patis-price">350 FCFA</span>
+        </div>
+      </div>
+
+      <!-- Medium -->
+      <div class="patis-card medium">
+        <div class="patis-img bg-eclair" style="min-height:210px">
+          <span class="patis-emoji-bg">🍫</span>
+        </div>
+        <div class="patis-overlay">
+          <span class="patis-tag">Bestseller</span>
+          <div class="patis-name">Éclair au Chocolat</div>
+          <div class="patis-desc">Pâte à choux croustillante, crème pâtissière au cacao pur.</div>
+          <span class="patis-price">600 FCFA</span>
+        </div>
+      </div>
+
+      <!-- Small -->
+      <div class="patis-card small">
+        <div class="patis-img bg-tarte" style="min-height:210px">
+          <span class="patis-emoji-bg">🍓</span>
+        </div>
+        <div class="patis-overlay">
+          <div class="patis-name">Tarte aux Fruits</div>
+          <div class="patis-desc">Fruits frais de saison, crème légère.</div>
+          <span class="patis-price">1 200 FCFA</span>
+        </div>
+      </div>
+
+      <!-- Wide -->
+      <div class="patis-card wide">
+        <div class="patis-img bg-mille" style="min-height:210px">
+          <span class="patis-emoji-bg">🎂</span>
+        </div>
+        <div class="patis-overlay">
+          <span class="patis-tag">Sur commande</span>
+          <div class="patis-name">Mille-Feuille Vanille</div>
+          <div class="patis-desc">Feuilletage caramélisé, crème diplomate à la vanille de Madagascar, nappage fondant.</div>
+          <span class="patis-price">1 500 FCFA</span>
+        </div>
+      </div>
+
+      <!-- Small -->
+      <div class="patis-card small">
+        <div class="patis-img bg-fondant" style="min-height:210px">
+          <span class="patis-emoji-bg">🍮</span>
+        </div>
+        <div class="patis-overlay">
+          <div class="patis-name">Fondant Coulant</div>
+          <div class="patis-desc">Cœur coulant au chocolat noir 72%.</div>
+          <span class="patis-price">700 FCFA</span>
+        </div>
+      </div>
+
+      <!-- Medium -->
+      <div class="patis-card medium">
+        <div class="patis-img bg-brioche" style="min-height:210px">
+          <span class="patis-emoji-bg">🍞</span>
+        </div>
+        <div class="patis-overlay">
+          <span class="patis-tag">Matin</span>
+          <div class="patis-name">Brioche Tressée</div>
+          <div class="patis-desc">Brioche moelleuse, légèrement sucrée, idéale au petit-déjeuner.</div>
+          <span class="patis-price">800 FCFA</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TYPES DE PAIN -->
+<section class="pains" id="pains">
+  <div class="pains-inner">
+    <div class="pains-header reveal">
+      <span class="eyebrow">✦ Nos Pains</span>
+      <h2 class="section-title">24 variétés,<br>un seul savoir-faire</h2>
+      <p class="section-subtitle">Du pain quotidien à la création artisanale, nos boulangers maîtrisent l'art du pain dans toute sa diversité.</p>
+    </div>
+    <div class="pains-list reveal">
+
+      <div class="pain-item">
+        <div class="pain-visual">
+          <div class="pain-v-bg" style="background:linear-gradient(135deg,#8B5E2A,#C4923A)">
+            <span class="pain-emoji">🥖</span>
+          </div>
+        </div>
+        <div class="pain-content">
+          <div class="pain-name">Baguette Tradition</div>
+          <div class="pain-info">Pâte fermentée 24h, croûte craquante, mie aérée aux alveoles irrégulières. Notre bestseller quotidien.</div>
+          <div class="pain-meta">
+            <span class="pain-chip">250g</span>
+            <span class="pain-chip">Fermentation lente</span>
+            <span class="pain-chip">Farine T65</span>
+          </div>
+        </div>
+        <div class="pain-price-tag">250 FCFA</div>
+      </div>
+
+      <div class="pain-item">
+        <div class="pain-visual">
+          <div class="pain-v-bg" style="background:linear-gradient(135deg,#5C3A1E,#9A6535)">
+            <span class="pain-emoji">🍞</span>
+          </div>
+        </div>
+        <div class="pain-content">
+          <div class="pain-name">Pain de Campagne</div>
+          <div class="pain-info">Levain naturel, mélange de farines blanches et complètes. Saveur légèrement acidulée, croûte épaisse.</div>
+          <div class="pain-meta">
+            <span class="pain-chip">500g</span>
+            <span class="pain-chip">Au levain</span>
+            <span class="pain-chip">Farine mixte</span>
+          </div>
+        </div>
+        <div class="pain-price-tag">450 FCFA</div>
+      </div>
+
+      <div class="pain-item">
+        <div class="pain-visual">
+          <div class="pain-v-bg" style="background:linear-gradient(135deg,#6A3810,#B08040)">
+            <span class="pain-emoji">🌾</span>
+          </div>
+        </div>
+        <div class="pain-content">
+          <div class="pain-name">Pain Complet aux Graines</div>
+          <div class="pain-info">Farine complète T150, graines de sésame, lin et tournesol. Riche en fibres, idéal pour la santé.</div>
+          <div class="pain-meta">
+            <span class="pain-chip">400g</span>
+            <span class="pain-chip">Multi-graines</span>
+            <span class="pain-chip">Farine T150</span>
+          </div>
+        </div>
+        <div class="pain-price-tag">500 FCFA</div>
+      </div>
+
+      <div class="pain-item">
+        <div class="pain-visual">
+          <div class="pain-v-bg" style="background:linear-gradient(135deg,#7A4A00,#C09030)">
+            <span class="pain-emoji">🥨</span>
+          </div>
+        </div>
+        <div class="pain-content">
+          <div class="pain-name">Pain Viennois</div>
+          <div class="pain-info">Pain enrichi en beurre et lait, mie filante et moelleuse. Parfait pour sandwichs et petits-déjeuners.</div>
+          <div class="pain-meta">
+            <span class="pain-chip">300g</span>
+            <span class="pain-chip">Au beurre</span>
+            <span class="pain-chip">Mie filante</span>
+          </div>
+        </div>
+        <div class="pain-price-tag">350 FCFA</div>
+      </div>
+
+      <div class="pain-item">
+        <div class="pain-visual">
+          <div class="pain-v-bg" style="background:linear-gradient(135deg,#2A0A00,#6A2A10)">
+            <span class="pain-emoji">🫓</span>
+          </div>
+        </div>
+        <div class="pain-content">
+          <div class="pain-name">Pain au Seigle</div>
+          <div class="pain-info">Saveur robuste et caractère prononcé. Pain dense à la croûte épaisse, légèrement amer et très nourrissant.</div>
+          <div class="pain-meta">
+            <span class="pain-chip">450g</span>
+            <span class="pain-chip">Farine de seigle</span>
+            <span class="pain-chip">Dense</span>
+          </div>
+        </div>
+        <div class="pain-price-tag">550 FCFA</div>
+      </div>
+
+      <div class="pain-item">
+        <div class="pain-visual">
+          <div class="pain-v-bg" style="background:linear-gradient(135deg,#4A2800,#9A6828)">
+            <span class="pain-emoji">🍫</span>
+          </div>
+        </div>
+        <div class="pain-content">
+          <div class="pain-name">Pain au Chocolat</div>
+          <div class="pain-info">Pâte feuilletée au beurre, deux barres de chocolat noir fondu. Le chouchou des enfants et des gourmands.</div>
+          <div class="pain-meta">
+            <span class="pain-chip">Feuilleté</span>
+            <span class="pain-chip">Chocolat 60%</span>
+            <span class="pain-chip">Fait le matin</span>
+          </div>
+        </div>
+        <div class="pain-price-tag">400 FCFA</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE ATELIER -->
+<section class="section galerie" id="galerie">
+  <div class="galerie-inner">
+    <div class="galerie-header reveal">
+      <span class="eyebrow" style="color:var(--brun-c)">✦ L'Atelier</span>
+      <h2 class="section-title" style="color:var(--brun)">Dans les coulisses<br>de notre boulangerie</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto;text-align:center;">Chaque geste est précis, chaque fournée est une histoire. Voici votre pain avant qu'il arrive sur votre table.</p>
+    </div>
+
+    <div class="galerie-masonry reveal">
+      <div class="photo-card p1" onclick="openLightbox('🥖', 'Façonnage du pain')">
+        <div class="photo-placeholder g1">
+          <span class="ph-emoji">🥖</span>
+          <span class="ph-label">Façonnage du pain</span>
+          <span class="add-photo-hint">Ajouter votre photo</span>
+        </div>
+        <div class="photo-caption">Façonnage à la main</div>
+      </div>
+      <div class="photo-card p2" onclick="openLightbox('🔥', 'Le four artisanal')">
+        <div class="photo-placeholder g2">
+          <span class="ph-emoji">🔥</span>
+          <span class="ph-label">Le four artisanal</span>
+        </div>
+        <div class="photo-caption">Four à sole</div>
+      </div>
+      <div class="photo-card p3" onclick="openLightbox('🌾', 'La farine sélectionnée')">
+        <div class="photo-placeholder g3">
+          <span class="ph-emoji">🌾</span>
+          <span class="ph-label">Farines sélectionnées</span>
+        </div>
+        <div class="photo-caption">Ingrédients de qualité</div>
+      </div>
+      <div class="photo-card p4" onclick="openLightbox('🥐', 'Le laminage')">
+        <div class="photo-placeholder g4">
+          <span class="ph-emoji">🥐</span>
+          <span class="ph-label">Laminage des croissants</span>
+        </div>
+        <div class="photo-caption">27 couches de feuilletage</div>
+      </div>
+      <div class="photo-card p5" onclick="openLightbox('⏰', 'La fermentation')">
+        <div class="photo-placeholder g5">
+          <span class="ph-emoji">⏰</span>
+          <span class="ph-label">Repos & fermentation</span>
+        </div>
+        <div class="photo-caption">Levée 24h</div>
+      </div>
+      <div class="photo-card p6" onclick="openLightbox('👨‍🍳', 'Notre chef boulanger')">
+        <div class="photo-placeholder g6">
+          <span class="ph-emoji">👨‍🍳</span>
+          <span class="ph-label">Notre chef boulanger</span>
+          <span class="add-photo-hint">Ajouter votre photo</span>
+        </div>
+        <div class="photo-caption">Maître boulanger</div>
+      </div>
+      <div class="photo-card p7" onclick="openLightbox('🎂', 'Décoration pâtisserie')">
+        <div class="photo-placeholder g7">
+          <span class="ph-emoji">🎂</span>
+          <span class="ph-label">Décoration</span>
+        </div>
+        <div class="photo-caption">Finitions pâtissières</div>
+      </div>
+      <div class="photo-card p8" onclick="openLightbox('🥖', 'La fournée du matin')">
+        <div class="photo-placeholder g8">
+          <span class="ph-emoji">🍞</span>
+          <span class="ph-label">La fournée du matin</span>
+        </div>
+        <div class="photo-caption">6h00 — La fournée sort du four</div>
+      </div>
+      <div class="photo-card p9" onclick="openLightbox('✨', 'Le résultat final')">
+        <div class="photo-placeholder g9">
+          <span class="ph-emoji">✨</span>
+          <span class="ph-label">Le résultat</span>
+        </div>
+        <div class="photo-caption">Prêt à déguster</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:2rem;font-size:0.8rem;color:var(--gris);font-style:italic;">
+      💡 Remplacez les cases par vos propres photos en modifiant le code HTML
+    </p>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages">
+  <div class="temoignages-inner">
+    <div class="temoignages-header reveal">
+      <span class="eyebrow" style="color:var(--brun-c)">✦ Avis Clients</span>
+      <h2 class="section-title" style="color:var(--brun)">Ils nous font confiance</h2>
+    </div>
+    <div class="temoignages-track">
+      <div class="temo-card reveal">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« Les croissants sont une merveille. Je fais 20 minutes de route chaque matin juste pour ça — ça vaut largement le déplacement ! »</p>
+        <div class="temo-author"><strong>Émilienne T.</strong> Cliente fidèle depuis 2 ans</div>
+      </div>
+      <div class="temo-card reveal">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« J'ai commandé le gâteau de mariage de ma fille ici. Somptueux, délicieux et livré à l'heure. Toute la famille en redemande. »</p>
+        <div class="temo-author"><strong>Robert M.</strong> Commande spéciale mariage</div>
+      </div>
+      <div class="temo-card reveal">
+        <div class="temo-stars">★★★★☆</div>
+        <p class="temo-text">« La formation culinaire que j'ai suivie ici a changé ma vie. Les chefs sont patients, pédagogues et passionnés. Je recommande ! »</p>
+        <div class="temo-author"><strong>Sandrine K.</strong> Participante formation pâtisserie</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <span class="eyebrow cta-eyebrow">✦ Commander</span>
+  <h2 class="cta-title">Une envie de bon pain<br><em>fraîchement cuit ?</em></h2>
+  <p class="cta-text">Passez commande par WhatsApp pour un retrait en boutique ou une livraison à domicile. Commandes spéciales (gâteaux, événements) : 48h à l'avance.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/237673395493" class="btn-or" target="_blank">📲 Commander sur WhatsApp</a>
+    <a href="lebesthotel.html#reservation" class="btn-ghost">Réserver à l'hôtel</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Le Best Boulangerie</div>
+      <div class="footer-brand-tag">Artisanat · Passion · Yaoundé</div>
+      <p class="footer-brand-desc">Chaque matin depuis nos fours, nous fabriquons à la main des pains, viennoiseries et pâtisseries qui font le bonheur de Yaoundé.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links-list">
+        <li><a href="#agences">Nos agences</a></li>
+        <li><a href="#patisseries">Pâtisseries</a></li>
+        <li><a href="#pains">Types de pain</a></li>
+        <li><a href="#galerie">L'atelier</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links-list">
+        <li><a href="tel:+237673395493">+237 673 395 493</a></li>
+        <li><a href="mailto:boulangerie@lebesthotel.com">boulangerie@lebesthotel.com</a></li>
+        <li><a href="https://wa.me/237673395493">WhatsApp</a></li>
+        <li><a href="lebesthotel.html">Retour à l'hôtel</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Le Best Hôtel & Boulangerie — Mvog Ada, Yaoundé, Cameroun</span>
+    <a href="lebesthotel.html" class="footer-back">← Retour à l'hôtel</a>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating -->
+<a href="https://wa.me/237673395493" class="wa-float" target="_blank" title="Commander via WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <div class="lightbox-content" id="lightboxContent"></div>
+</div>
+
+<script>
+// Custom cursor
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  dot.style.left = e.clientX + 'px';
+  dot.style.top = e.clientY + 'px';
+  ring.style.left = e.clientX + 'px';
+  ring.style.top = e.clientY + 'px';
+});
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Lightbox
+function openLightbox(emoji, label) {
+  document.getElementById('lightboxContent').innerHTML = `
+    <div style="font-size:8rem;margin-bottom:1rem">${emoji}</div>
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.5rem;color:rgba(212,168,71,0.8)">${label}</div>
+    <div style="margin-top:1rem;font-size:0.8rem;color:rgba(255,255,255,0.3);letter-spacing:0.15em;text-transform:uppercase">Remplacez par votre photo</div>
+  `;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
