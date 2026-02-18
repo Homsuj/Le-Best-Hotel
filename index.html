@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Best Hôtel & Boulangerie — Yaoundé</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --or: #C9A84C;
+    --or-clair: #F0D890;
+    --vert: #1A2E1A;
+    --vert-mid: #2E4A2E;
+    --creme: #F8F3E8;
+    --brun: #7A5C2E;
+    --blanc: #FDFAF4;
+    --texte: #1A1A1A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanc);
+    color: var(--texte);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(26,46,26,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; color: var(--or);
+    letter-spacing: 0.05em; text-decoration: none;
+  }
+  .nav-logo span { color: #fff; font-weight: 300; font-style: italic; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--or); }
+  .nav-cta {
+    background: var(--or); color: var(--vert) !important;
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    font-weight: 500; transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--or-clair) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--vert) 0%, #0D1F0D 50%, #1A2A10 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 2rem 4rem;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 40% at 20% 60%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 30%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .hero-ornement {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--or), transparent);
+  }
+
+  /* Grain texture */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; opacity: 0.4;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--or); margin-bottom: 1.5rem;
+    animation: fadeUp 1s 0.2s both;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 300; color: #fff; text-align: center;
+    line-height: 0.95; letter-spacing: -0.02em;
+    animation: fadeUp 1s 0.4s both;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--or);
+    display: block;
+  }
+  .hero-subtitle {
+    font-size: 1rem; color: rgba(255,255,255,0.55);
+    margin-top: 2rem; text-align: center; letter-spacing: 0.05em;
+    animation: fadeUp 1s 0.6s both;
+  }
+
+  .hero-divider {
+    width: 60px; height: 1px; background: var(--or);
+    margin: 2.5rem auto; animation: fadeUp 1s 0.7s both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 1s 0.8s both;
+  }
+  .btn-primary {
+    background: var(--or); color: var(--vert);
+    padding: 1rem 2.5rem; font-size: 0.85rem;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+    border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; transition: all 0.3s;
+    border-radius: 1px;
+  }
+  .btn-primary:hover { background: var(--or-clair); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: #fff;
+    padding: 1rem 2.5rem; font-size: 0.85rem;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400;
+    border: 1px solid rgba(255,255,255,0.3); cursor: pointer; text-decoration: none;
+    display: inline-block; transition: all 0.3s; border-radius: 1px;
+  }
+  .btn-outline:hover { border-color: var(--or); color: var(--or); transform: translateY(-2px); }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.3); font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; animation: fadeUp 1s 1.2s both;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--or), transparent);
+    animation: scrollAnim 2s ease-in-out infinite;
+  }
+
+  /* ─── DEUX UNIVERS ─── */
+  .split-section {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 85vh;
+  }
+  .split-panel {
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 4rem;
+    min-height: 500px;
+  }
+  .split-hotel {
+    background: linear-gradient(160deg, #0D1F0D 0%, var(--vert-mid) 100%);
+  }
+  .split-bakery {
+    background: linear-gradient(160deg, #5C3A1E 0%, #3E2410 100%);
+  }
+  .split-panel::before {
+    content: '';
+    position: absolute; inset: 0;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C9A84C' fill-opacity='1'%3E%3Cpath d='M30 0L60 30L30 60L0 30z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 40px 40px;
+  }
+  .split-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem; font-weight: 300;
+    color: rgba(201,168,76,0.12);
+    position: absolute; top: 1rem; right: 2rem;
+    line-height: 1; pointer-events: none;
+  }
+  .split-tag {
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--or); margin-bottom: 1rem;
+  }
+  .split-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300; color: #fff; line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .split-text {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem; line-height: 1.7;
+    margin-bottom: 2rem; max-width: 400px;
+  }
+  .split-link {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    color: var(--or); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    transition: gap 0.3s;
+  }
+  .split-link:hover { gap: 1.4rem; }
+  .split-link::after { content: '→'; font-size: 1rem; }
+
+  /* ─── CHAMBRES ─── */
+  .section { padding: 7rem 3rem; }
+  .section-dark { background: var(--vert); color: #fff; }
+  .section-creme { background: var(--creme); }
+
+  .section-header { text-align: center; margin-bottom: 5rem; }
+  .section-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--or); margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.1;
+  }
+  .section-dark .section-title { color: #fff; }
+  .section-desc {
+    margin-top: 1.2rem; color: rgba(255,255,255,0.5);
+    font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+
+  /* Chambres grid */
+  .rooms-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+  }
+  .room-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px; overflow: hidden;
+    transition: transform 0.4s, border-color 0.4s;
+    cursor: pointer;
+  }
+  .room-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.4); }
+  .room-visual {
+    height: 200px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .room-icon {
+    font-size: 4rem; opacity: 0.15;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--or);
+  }
+  .room-v1 { background: linear-gradient(135deg, #1A3020 0%, #0D2015 100%); }
+  .room-v2 { background: linear-gradient(135deg, #1E2A3A 0%, #0D1525 100%); }
+  .room-v3 { background: linear-gradient(135deg, #2A1A10 0%, #1A0D05 100%); }
+  .room-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--or); color: var(--vert);
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem; text-transform: uppercase;
+  }
+  .room-body { padding: 1.8rem; }
+  .room-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: #fff; margin-bottom: 0.5rem;
+  }
+  .room-details {
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  }
+  .room-price {
+    display: flex; align-items: baseline; gap: 0.4rem;
+  }
+  .room-price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; color: var(--or); font-weight: 300;
+  }
+  .room-price-unit { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+  .room-amenities {
+    display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap;
+  }
+  .amenity {
+    font-size: 0.7rem; color: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.25rem 0.6rem; border-radius: 1px;
+  }
+
+  /* ─── RÉSERVATION ─── */
+  .reservation-bar {
+    background: var(--or);
+    padding: 3rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .resa-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--vert); font-weight: 300;
+    white-space: nowrap;
+  }
+  .resa-fields {
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  }
+  .resa-field {
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .resa-field label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(26,46,26,0.7); font-weight: 500;
+  }
+  .resa-field input, .resa-field select {
+    background: rgba(26,46,26,0.12);
+    border: 1px solid rgba(26,46,26,0.2);
+    padding: 0.7rem 1.2rem; font-size: 0.9rem;
+    color: var(--vert); outline: none;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 1px;
+  }
+  .btn-resa {
+    background: var(--vert); color: #fff;
+    padding: 1rem 2.5rem; border: none; cursor: pointer;
+    font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    transition: background 0.3s; white-space: nowrap;
+    border-radius: 1px;
+  }
+  .btn-resa:hover { background: var(--vert-mid); }
+
+  /* ─── BOULANGERIE ─── */
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: rgba(122,92,46,0.15);
+    max-width: 1200px; margin: 0 auto;
+  }
+  .menu-item {
+    background: var(--creme);
+    padding: 2.5rem 2rem; text-align: center;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .menu-item:hover { background: #fff; }
+  .menu-emoji { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+  .menu-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; color: var(--brun); margin-bottom: 0.5rem;
+  }
+  .menu-desc { font-size: 0.8rem; color: #888; line-height: 1.5; }
+  .menu-prix {
+    margin-top: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--brun); font-style: italic;
+  }
+
+  /* ─── HORAIRES BOULANGERIE ─── */
+  .bakery-info {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; max-width: 1000px; margin: 5rem auto 0;
+    padding: 0 2rem;
+  }
+  .info-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; color: var(--brun); margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(122,92,46,0.2);
+  }
+  .horaire-row {
+    display: flex; justify-content: space-between;
+    padding: 0.6rem 0; border-bottom: 1px dashed rgba(0,0,0,0.08);
+    font-size: 0.9rem; color: #555;
+  }
+  .horaire-row strong { color: var(--texte); }
+  .open-badge {
+    display: inline-block; padding: 0.2rem 0.7rem;
+    background: #E8F5E9; color: #2E7D32;
+    font-size: 0.7rem; letter-spacing: 0.1em; border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; max-width: 1100px; margin: 0 auto;
+  }
+  .service-card {
+    text-align: center; padding: 3rem 2rem;
+    border: 1px solid rgba(201,168,76,0.15);
+    transition: border-color 0.3s, transform 0.3s;
+    border-radius: 2px;
+  }
+  .service-card:hover { border-color: var(--or); transform: translateY(-4px); }
+  .service-icon {
+    font-size: 2.5rem; margin-bottom: 1.5rem; display: block;
+    filter: sepia(1) saturate(0.5);
+  }
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: #fff; margin-bottom: 0.8rem;
+  }
+  .service-text { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+  /* ─── TÉMOIGNAGES ─── */
+  .temoignages { padding: 7rem 3rem; background: var(--creme); }
+  .temoignages-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; max-width: 1100px; margin: 0 auto;
+  }
+  .temoignage-card {
+    background: #fff; padding: 2.5rem;
+    border-left: 3px solid var(--or);
+    border-radius: 0 2px 2px 0;
+  }
+  .temoignage-stars { color: var(--or); margin-bottom: 1rem; letter-spacing: 0.1em; }
+  .temoignage-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-style: italic; color: #444;
+    line-height: 1.6; margin-bottom: 1.5rem;
+  }
+  .temoignage-author { font-size: 0.8rem; color: #999; letter-spacing: 0.05em; }
+  .temoignage-author strong { color: var(--brun); display: block; }
+
+  /* ─── CONTACT ─── */
+  .contact-section {
+    padding: 7rem 3rem;
+    background: linear-gradient(135deg, var(--vert) 0%, #0D1F0D 100%);
+    color: #fff;
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .contact-info { }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300;
+    line-height: 1.2; margin-bottom: 2rem;
+  }
+  .contact-detail {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  .contact-detail-icon { font-size: 1.2rem; margin-top: 0.1rem; }
+  .contact-detail-text { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .contact-detail-text strong { color: #fff; display: block; margin-bottom: 0.2rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* WhatsApp CTA */
+  .whatsapp-btn {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    background: #25D366; color: #fff;
+    padding: 1rem 2rem; border-radius: 2px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    margin-top: 2rem; transition: background 0.3s, transform 0.2s;
+  }
+  .whatsapp-btn:hover { background: #128C7E; transform: translateY(-2px); }
+
+  /* Contact form */
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.9rem 1.2rem; color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.3s; border-radius: 1px;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--or);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select option { background: var(--vert); }
+
+  /* Map placeholder */
+  .map-placeholder {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.3); font-size: 0.9rem;
+    margin-top: 2rem; letter-spacing: 0.05em;
+    flex-direction: column; gap: 0.5rem;
+  }
+  .map-placeholder a {
+    color: var(--or); font-size: 0.8rem; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050F05; padding: 3rem;
+    text-align: center; border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--or); letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .footer-tag { font-size: 0.75rem; color: rgba(255,255,255,0.2); letter-spacing: 0.2em; text-transform: uppercase; }
+  .footer-links {
+    display: flex; gap: 2rem; justify-content: center;
+    margin: 2rem 0; list-style: none; flex-wrap: wrap;
+  }
+  .footer-links a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--or); }
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.15); }
+
+  /* ─── WHATSAPP FLOATING ─── */
+  .whatsapp-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    background: #25D366; width: 56px; height: 56px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.6); }
+  .whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollAnim {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 35px rgba(37,211,102,0.7); }
+  }
+
+  /* Fade-in on scroll */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .split-section { grid-template-columns: 1fr; }
+    .rooms-grid { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .temoignages-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .reservation-bar { flex-direction: column; text-align: center; }
+    .bakery-info { grid-template-columns: 1fr; }
+    .section { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Le Best <span>Hôtel</span></a>
+  <ul class="nav-links">
+    <li><a href="#hotel">L'Hôtel</a></li>
+    <li><a href="boulangerie.html">Boulangerie</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#reservation" class="nav-cta">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornement"></div>
+  <p class="hero-eyebrow">✦ Yaoundé, Cameroun — Mvog Ada ✦</p>
+  <h1 class="hero-title">
+    Le Best<br>
+    <em>Hôtel & Boulangerie</em>
+  </h1>
+  <p class="hero-subtitle">Un séjour d'exception. Une table qui éveille.</p>
+  <div class="hero-divider"></div>
+  <div class="hero-btns">
+    <a href="#reservation" class="btn-primary">Réserver une chambre</a>
+    <a href="boulangerie.html" class="btn-outline">Découvrir la boulangerie</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Découvrir
+  </div>
+</section>
+
+<!-- DEUX UNIVERS -->
+<section class="split-section">
+  <div class="split-panel split-hotel reveal">
+    <div class="split-number">01</div>
+    <span class="split-tag">✦ L'Hôtel</span>
+    <h2 class="split-title">Confort & Élégance<br>à Yaoundé</h2>
+    <p class="split-text">Des chambres raffinées, une atmosphère chaleureuse et des équipements pensés pour votre bien-être — au cœur de la capitale camerounaise.</p>
+    <a href="#hotel" class="split-link">Voir les chambres</a>
+  </div>
+  <div class="split-panel split-bakery reveal">
+    <div class="split-number">02</div>
+    <span class="split-tag">✦ La Boulangerie</span>
+    <h2 class="split-title">Pain Frais &<br>Saveurs Artisanales</h2>
+    <p class="split-text">Croissants dorés, pains artisanaux, pâtisseries maison... Chaque matin commence par l'odeur du pain frais et du café chaud.</p>
+    <a href="boulangerie.html" class="split-link">Voir la carte</a>
+  </div>
+</section>
+
+<!-- RÉSERVATION BAR -->
+<section class="reservation-bar" id="reservation">
+  <div class="resa-title">Réserver votre chambre</div>
+  <div class="resa-fields">
+    <div class="resa-field">
+      <label>Arrivée</label>
+      <input type="date">
+    </div>
+    <div class="resa-field">
+      <label>Départ</label>
+      <input type="date">
+    </div>
+    <div class="resa-field">
+      <label>Chambre</label>
+      <select>
+        <option>Standard</option>
+        <option>Confort</option>
+        <option>Suite</option>
+      </select>
+    </div>
+    <div class="resa-field">
+      <label>Personnes</label>
+      <select>
+        <option>1 personne</option>
+        <option>2 personnes</option>
+        <option>3 personnes</option>
+      </select>
+    </div>
+    <button class="btn-resa">Vérifier disponibilité</button>
+  </div>
+</section>
+
+<!-- CHAMBRES -->
+<section class="section section-dark" id="hotel">
+  <div class="section-header reveal">
+    <span class="section-eyebrow">✦ Nos Hébergements</span>
+    <h2 class="section-title">Chambres & Suites</h2>
+    <p class="section-desc">Chaque chambre a été conçue pour offrir le meilleur confort dans une atmosphère de sérénité.</p>
+  </div>
+  <div class="rooms-grid">
+    <div class="room-card reveal">
+      <div class="room-visual room-v1">
+        <span class="room-icon">I</span>
+        <span class="room-badge">Disponible</span>
+      </div>
+      <div class="room-body">
+        <div class="room-name">Chambre Standard</div>
+        <div class="room-details">25 m² · Lit double · 1 personne</div>
+        <div class="room-price">
+          <span class="room-price-amount">15 000</span>
+          <span class="room-price-unit">FCFA / nuit</span>
+        </div>
+        <div class="room-amenities">
+          <span class="amenity">WiFi</span>
+          <span class="amenity">Clim</span>
+          <span class="amenity">TV</span>
+        </div>
+      </div>
+    </div>
+    <div class="room-card reveal">
+      <div class="room-visual room-v2">
+        <span class="room-icon">II</span>
+        <span class="room-badge">Populaire</span>
+      </div>
+      <div class="room-body">
+        <div class="room-name">Chambre Confort</div>
+        <div class="room-details">35 m² · Grand lit · 2 personnes</div>
+        <div class="room-price">
+          <span class="room-price-amount">25 000</span>
+          <span class="room-price-unit">FCFA / nuit</span>
+        </div>
+        <div class="room-amenities">
+          <span class="amenity">WiFi</span>
+          <span class="amenity">Clim</span>
+          <span class="amenity">TV</span>
+          <span class="amenity">Mini-bar</span>
+        </div>
+      </div>
+    </div>
+    <div class="room-card reveal">
+      <div class="room-visual room-v3">
+        <span class="room-icon">III</span>
+        <span class="room-badge" style="background:#fff;color:var(--brun)">Suite</span>
+      </div>
+      <div class="room-body">
+        <div class="room-name">Suite Prestige</div>
+        <div class="room-details">55 m² · Suite · 2-3 personnes</div>
+        <div class="room-price">
+          <span class="room-price-amount">45 000</span>
+          <span class="room-price-unit">FCFA / nuit</span>
+        </div>
+        <div class="room-amenities">
+          <span class="amenity">WiFi</span>
+          <span class="amenity">Clim</span>
+          <span class="amenity">TV</span>
+          <span class="amenity">Salon</span>
+          <span class="amenity">Baignoire</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOULANGERIE -->
+<section class="section section-creme" id="boulangerie">
+  <div class="section-header reveal">
+    <span class="section-eyebrow" style="color:var(--brun)">✦ Notre Boulangerie</span>
+    <h2 class="section-title" style="color:var(--brun)">À la carte</h2>
+    <p class="section-desc" style="color:#888">Fait maison chaque matin avec des ingrédients frais et sélectionnés</p>
+  </div>
+
+  <div class="menu-grid reveal">
+    <div class="menu-item">
+      <span class="menu-emoji">🥐</span>
+      <div class="menu-name">Croissant Beurre</div>
+      <div class="menu-desc">Feuilleté, doré, beurré à la perfection</div>
+      <div class="menu-prix">350 FCFA</div>
+    </div>
+    <div class="menu-item">
+      <span class="menu-emoji">🍞</span>
+      <div class="menu-name">Pain Artisanal</div>
+      <div class="menu-desc">Baguette croustillante, pain de campagne</div>
+      <div class="menu-prix">250 FCFA</div>
+    </div>
+    <div class="menu-item">
+      <span class="menu-emoji">☕</span>
+      <div class="menu-name">Café & Boissons</div>
+      <div class="menu-desc">Café local, thé, jus frais du jour</div>
+      <div class="menu-prix">à partir de 200 FCFA</div>
+    </div>
+    <div class="menu-item">
+      <span class="menu-emoji">🍰</span>
+      <div class="menu-name">Pâtisseries</div>
+      <div class="menu-desc">Gâteaux, tartes, mille-feuille maison</div>
+      <div class="menu-prix">à partir de 500 FCFA</div>
+    </div>
+    <div class="menu-item">
+      <span class="menu-emoji">🥗</span>
+      <div class="menu-name">Formule Brunch</div>
+      <div class="menu-desc">Pain + œufs + boisson + fruit de saison</div>
+      <div class="menu-prix">2 500 FCFA</div>
+    </div>
+    <div class="menu-item">
+      <span class="menu-emoji">🧀</span>
+      <div class="menu-name">Plateau Fromages</div>
+      <div class="menu-desc">Fromage blanc, tartines, confiture maison</div>
+      <div class="menu-prix">1 500 FCFA</div>
+    </div>
+    <div class="menu-item">
+      <span class="menu-emoji">🥪</span>
+      <div class="menu-name">Sandwichs</div>
+      <div class="menu-desc">Jambon, poulet, légumes grillés</div>
+      <div class="menu-prix">800 FCFA</div>
+    </div>
+    <div class="menu-item">
+      <span class="menu-emoji">🎂</span>
+      <div class="menu-name">Commande Spéciale</div>
+      <div class="menu-desc">Gâteaux d'anniversaire & événements</div>
+      <div class="menu-prix">Sur devis</div>
+    </div>
+  </div>
+
+  <!-- Horaires -->
+  <div class="bakery-info reveal">
+    <div>
+      <div class="info-block-title">🕐 Horaires d'ouverture</div>
+      <div class="horaire-row"><strong>Lundi – Vendredi</strong> <span>6h00 – 20h00 <span class="open-badge">Ouvert</span></span></div>
+      <div class="horaire-row"><strong>Samedi</strong> <span>6h00 – 21h00</span></div>
+      <div class="horaire-row"><strong>Dimanche</strong> <span>7h00 – 14h00</span></div>
+      <div class="horaire-row"><strong>Jours fériés</strong> <span>7h00 – 13h00</span></div>
+    </div>
+    <div>
+      <div class="info-block-title">📋 Infos pratiques</div>
+      <div class="horaire-row"><strong>Commandes à emporter</strong> <span>✓ Disponible</span></div>
+      <div class="horaire-row"><strong>Livraison</strong> <span>Renseignez-vous</span></div>
+      <div class="horaire-row"><strong>Petits-déjeuners hôtel</strong> <span>6h30 – 10h00</span></div>
+      <div class="horaire-row"><strong>Commandes spéciales</strong> <span>48h à l'avance</span></div>
+      <p style="margin-top:1.5rem;font-size:0.85rem;color:#999;">Formation culinaire disponible sur demande — renseignements à l'accueil ou par WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-dark" id="services">
+  <div class="section-header reveal">
+    <span class="section-eyebrow">✦ Nos Services</span>
+    <h2 class="section-title">Tout ce dont vous avez besoin</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">🎉</span>
+      <div class="service-title">Événements & Réceptions</div>
+      <p class="service-text">Mariages, conférences, baptêmes — nos espaces accueillent vos événements avec style et soin.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">👨‍🍳</span>
+      <div class="service-title">Formation Culinaire</div>
+      <p class="service-text">Apprenez les techniques de boulangerie et pâtisserie avec nos chefs expérimentés.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🚗</span>
+      <div class="service-title">Transfert & Accueil</div>
+      <p class="service-text">Service de transfert depuis l'aéroport, accueil personnalisé 24h/24.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">💼</span>
+      <div class="service-title">Salle de Réunion</div>
+      <p class="service-text">Espace équipé pour vos réunions d'affaires avec projecteur, WiFi haut débit et restauration.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🍽️</span>
+      <div class="service-title">Restaurant</div>
+      <p class="service-text">Cuisine locale et internationale, plats du jour et menu gastronomique le soir.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🏋️</span>
+      <div class="service-title">Loisirs & Bien-être</div>
+      <p class="service-text">Détendez-vous dans nos espaces de loisirs et profitez d'une atmosphère apaisante.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages">
+  <div class="section-header reveal">
+    <span class="section-eyebrow" style="color:var(--brun)">✦ Avis Clients</span>
+    <h2 class="section-title" style="color:var(--brun)">Ce que disent nos hôtes</h2>
+  </div>
+  <div class="temoignages-grid">
+    <div class="temoignage-card reveal">
+      <div class="temoignage-stars">★★★★★</div>
+      <p class="temoignage-text">« Un accueil chaleureux, des chambres propres et confortables. La boulangerie le matin est un vrai bonheur ! »</p>
+      <div class="temoignage-author">
+        <strong>Marie-Claire N.</strong>
+        Venue pour un séjour d'affaires
+      </div>
+    </div>
+    <div class="temoignage-card reveal">
+      <div class="temoignage-stars">★★★★★</div>
+      <p class="temoignage-text">« Les croissants sont meilleurs qu'en France ! J'ai organisé mon anniversaire ici — service impeccable et très pro. »</p>
+      <div class="temoignage-author">
+        <strong>Jean-Baptiste K.</strong>
+        Client régulier
+      </div>
+    </div>
+    <div class="temoignage-card reveal">
+      <div class="temoignage-stars">★★★★☆</div>
+      <p class="temoignage-text">« Excellent rapport qualité-prix à Yaoundé. Le personnel est souriant et attentionné. Je recommande vivement ! »</p>
+      <div class="temoignage-author">
+        <strong>Aminata D.</strong>
+        Voyageuse depuis Douala
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h2 class="contact-title">Venez nous rendre visite à Yaoundé</h2>
+
+      <div class="contact-detail">
+        <span class="contact-detail-icon">📍</span>
+        <div class="contact-detail-text">
+          <strong>Adresse</strong>
+          Mvog Ada, Yaoundé, Cameroun<br>
+          Près du marché central
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-icon">📞</span>
+        <div class="contact-detail-text">
+          <strong>Téléphone</strong>
+          +237 673 395 493<br>
+          +237 6XX XXX XXX
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-icon">📧</span>
+        <div class="contact-detail-text">
+          <strong>Email</strong>
+          <a href="mailto:contact@lebesthotel.cm">contact@lebesthotel.cm</a><br>
+          <a href="mailto:boulangerie@lebesthotel.cm">boulangerie@lebesthotel.cm</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-icon">🕐</span>
+        <div class="contact-detail-text">
+          <strong>Réception 24h/24</strong>
+          Check-in à partir de 12h<br>
+          Check-out avant 11h
+        </div>
+      </div>
+
+      <a href="https://wa.me/237673395493" class="whatsapp-btn" target="_blank">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Contacter via WhatsApp
+      </a>
+
+      <div class="map-placeholder">
+        <span>📍 Mvog Ada, Yaoundé</span>
+        <a href="https://maps.google.com/?q=Mvog+Ada+Yaounde" target="_blank">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:2rem;color:#fff;">Envoyez-nous un message</h3>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nom complet</label>
+            <input type="text" placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" placeholder="+237 6XX XXX XXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="votre@email.com">
+        </div>
+        <div class="form-group">
+          <label>Objet de la demande</label>
+          <select>
+            <option>Réservation chambre</option>
+            <option>Commande boulangerie</option>
+            <option>Organisation d'événement</option>
+            <option>Formation culinaire</option>
+            <option>Autre demande</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Décrivez votre demande..."></textarea>
+        </div>
+        <button class="btn-resa" style="width:100%;padding:1.2rem;">Envoyer le message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Le Best Hôtel</div>
+  <div class="footer-tag">Hôtel & Boulangerie · Yaoundé, Cameroun</div>
+  <ul class="footer-links">
+    <li><a href="#hotel">L'Hôtel</a></li>
+    <li><a href="boulangerie.html">Boulangerie</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reservation">Réserver</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 Le Best Hôtel & Boulangerie — Tous droits réservés · Mvog Ada, Yaoundé</p>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/237673395493" class="whatsapp-float" target="_blank" title="Contacter via WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Set today's date as min for reservation
+  const today = new Date().toISOString().split('T')[0];
+  document.querySelectorAll('input[type="date"]').forEach(el => el.min = today);
+</script>
+</body>
+</html>
